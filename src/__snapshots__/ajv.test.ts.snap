@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ajv - validateWithSchema should return undefined when no error reported 1`] = `
+Object {
+  "errors": Object {},
+  "values": Object {},
+}
+`;
+
+exports[`ajvResolver should get errors 1`] = `
+Object {
+  "errors": Object {
+    "firstName": Object {
+      "message": "should be string",
+      "type": "type",
+    },
+    "options": Object {
+      "message": "should be equal to one of the allowed values",
+      "type": "enum",
+    },
+  },
+  "values": Object {},
+}
+`;
