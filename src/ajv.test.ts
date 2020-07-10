@@ -1,4 +1,6 @@
 import { ajvResolver } from './ajv';
+// @ts-ignore
+import localize from 'ajv-i18n/localize/de';
 
 const errors = {
   message: "validation failed",
@@ -83,6 +85,15 @@ describe('ajvResolver', () => {
       options: 'three'
     };
     expect(await ajvResolver(schema)(data)).toMatchSnapshot();
+  });
+
+  it('should localize errors', async () => {
+    const data = {
+      firstName: 2,
+      email: undefined,
+      options: 'three'
+    };
+    expect(await ajvResolver(schema, undefined, localize)(data)).toMatchSnapshot();
   });
 });
 

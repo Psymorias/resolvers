@@ -22,3 +22,19 @@ Object {
   "values": Object {},
 }
 `;
+
+exports[`ajvResolver should localize errors 1`] = `
+Object {
+  "errors": Object {
+    "firstName": Object {
+      "message": "muss sein: string",
+      "type": "type",
+    },
+    "options": Object {
+      "message": "muss einem der vorgegebenen Werte entsprechen",
+      "type": "enum",
+    },
+  },
+  "values": Object {},
+}
+`;

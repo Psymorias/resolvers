@@ -1,10 +1,9 @@
 import { appendErrors, transformToNestObject, Resolver } from 'react-hook-form';
 import Ajv from 'ajv';
 
-
 const parseErrorSchema = (
   error: Array<Ajv.ErrorObject>,
-  validateAllFieldCriteria: boolean,
+  validateAllFieldCriteria: boolean
 ) =>
   error.reduce(
     (previous: Record<string, any>, { dataPath, message = '', keyword }) => ({
@@ -41,6 +40,7 @@ export const ajvResolver = <TFieldValues extends Record<string, any>>(
   options: Ajv.Options = {
     allErrors: true
   },
+  localize?: (errors: Array<Ajv.ErrorObject>) => void
 ): Resolver<TFieldValues> => async (
   values,
   _,
@@ -61,6 +61,10 @@ export const ajvResolver = <TFieldValues extends Record<string, any>>(
       errors: {},
     };
   } catch (e) {
+    if (localize) {
+      localize(e.errors);
+    }
+
     return {
       values: {},
       errors: transformToNestObject(

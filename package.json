@@ -1,6 +1,6 @@
 {
   "name": "@psymorias/hookform-resolvers-ajv",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "React Hook Form validation resolvers: Yup, Joi, Superstruct, Ajv and etc.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -60,6 +60,7 @@
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "@typescript-eslint/parser": "^3.2.0",
     "ajv": "^6.12.3",
+    "ajv-i18n": "^3.5.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
