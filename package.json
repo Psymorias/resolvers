@@ -1,7 +1,7 @@
 {
-  "name": "@hookform/resolvers",
+  "name": "@psymorias/hookform-resolvers-ajv",
   "version": "0.0.6",
-  "description": "React Hook Form validation resolvers: Yup, Joi, Superstruct and etc.",
+  "description": "React Hook Form validation resolvers: Yup, Joi, Superstruct, Ajv and etc.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "umd:main": "dist/index.umd.min.js",
@@ -25,7 +25,7 @@
     "test": "jest --runInBand",
     "test:watch": "npm run test -- --watchAll --coverage",
     "postversion": "git push && git push origin v$npm_package_version",
-    "prepublishOnly": "npm run lint && npm run lint:types && npm test && npm run build"
+    "prepublishOnly": "npm test && npm run build"
   },
   "keywords": [
     "scheme",
