@@ -1,6 +1,6 @@
 {
   "name": "@psymorias/hookform-resolvers-ajv",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React Hook Form validation resolvers: Yup, Joi, Superstruct, Ajv and etc.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
