@@ -24,7 +24,7 @@
     "lint:types": "tsc --noEmit",
     "test": "jest --runInBand",
     "test:watch": "npm run test -- --watchAll --coverage",
-    "postversion": "git push && git push origin v$npm_package_version",
+    "postversion": "git push",
     "prepublishOnly": "npm test && npm run build && npm version patch"
   },
   "keywords": [
