@@ -10,9 +10,13 @@ Object {
 exports[`ajvResolver should get errors 1`] = `
 Object {
   "errors": Object {
-    "firstName": Object {
+    "email": Object {
       "message": "should be string",
       "type": "type",
+    },
+    "firstName": Object {
+      "message": "should have required property 'firstName'",
+      "type": "required",
     },
     "options": Object {
       "message": "should be equal to one of the allowed values",
@@ -26,6 +30,10 @@ Object {
 exports[`ajvResolver should localize errors 1`] = `
 Object {
   "errors": Object {
+    "email": Object {
+      "message": "muss das erforderliche Attribut email enthalten",
+      "type": "required",
+    },
     "firstName": Object {
       "message": "muss sein: string",
       "type": "type",

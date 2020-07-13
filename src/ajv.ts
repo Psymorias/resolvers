@@ -1,11 +1,13 @@
 import { appendErrors, transformToNestObject, Resolver } from 'react-hook-form';
-import Ajv from 'ajv';
+import Ajv, { RequiredParams } from 'ajv';
 
 const parseErrorSchema = (
-  error: Array<Ajv.ErrorObject>,
+  errors: Array<Ajv.ErrorObject>,
   validateAllFieldCriteria: boolean
-) =>
-  error.reduce(
+) => {
+  enrichErrors(errors);
+
+  return errors.reduce(
     (previous: Record<string, any>, { dataPath, message = '', keyword }) => ({
       ...previous,
       ...(dataPath
@@ -16,7 +18,7 @@ const parseErrorSchema = (
               validateAllFieldCriteria,
               previous,
               keyword,
-              message,
+              message
             ),
           }
           : {
@@ -27,13 +29,26 @@ const parseErrorSchema = (
                 ? {
                   types: { [keyword]: message || true },
                 }
-                : {}),
+                : {})
             },
           }
         : {}),
     }),
     {},
   );
+};
+
+const enrichErrors = (
+  errors: Array<Ajv.ErrorObject>
+) => {
+  for (let i = 0; i < errors.length; i++) {
+    switch (errors[i].keyword) {
+      case 'required':
+        errors[i].dataPath = (errors[i].params as RequiredParams).missingProperty;
+        break;
+    }
+  }
+};
 
 export const ajvResolver = <TFieldValues extends Record<string, any>>(
   schema: object,
@@ -46,6 +61,13 @@ export const ajvResolver = <TFieldValues extends Record<string, any>>(
   _,
   validateAllFieldCriteria = false,
 ) => {
+  const clearedValues: Record<string, any> = {};
+  Object.keys(values).forEach((value) => {
+    if (!values[value] || values[value] !== '') {
+      clearedValues[value] = values[value];
+    }
+  });
+
   const ajv = new Ajv({
     ...options
   });
@@ -57,7 +79,7 @@ export const ajvResolver = <TFieldValues extends Record<string, any>>(
 
   try {
     return {
-      values: (await validate(values)) as any,
+      values: (await validate(clearedValues)) as any,
       errors: {},
     };
   } catch (e) {

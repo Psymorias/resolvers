@@ -57,8 +57,7 @@ const schema = {
     "firstName",
     "email",
     "options"
-  ],
-  additionalProperties: false
+  ]
 }
 
 describe('ajvResolver', () => {
@@ -80,8 +79,7 @@ describe('ajvResolver', () => {
 
   it('should get errors', async () => {
     const data = {
-      firstName: 2,
-      email: undefined,
+      email: 2,
       options: 'three'
     };
     expect(await ajvResolver(schema)(data)).toMatchSnapshot();
