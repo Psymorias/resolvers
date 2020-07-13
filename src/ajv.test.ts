@@ -85,6 +85,15 @@ describe('ajvResolver', () => {
     expect(await ajvResolver(schema)(data)).toMatchSnapshot();
   });
 
+  it('should clear value and then get errors', async () => {
+    const data = {
+      firstName: '',
+      email: undefined,
+      options: 'three'
+    };
+    expect(await ajvResolver(schema)(data)).toMatchSnapshot();
+  });
+
   it('should localize errors', async () => {
     const data = {
       firstName: 2,

@@ -63,7 +63,7 @@ export const ajvResolver = <TFieldValues extends Record<string, any>>(
 ) => {
   const clearedValues: Record<string, any> = {};
   Object.keys(values).forEach((value) => {
-    if (!values[value] || values[value] !== '') {
+    if (values[value] && values[value] !== '') {
       clearedValues[value] = values[value];
     }
   });

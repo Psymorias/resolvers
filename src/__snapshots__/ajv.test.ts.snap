@@ -7,6 +7,26 @@ Object {
 }
 `;
 
+exports[`ajvResolver should clear value and then get errors 1`] = `
+Object {
+  "errors": Object {
+    "email": Object {
+      "message": "should have required property 'email'",
+      "type": "required",
+    },
+    "firstName": Object {
+      "message": "should have required property 'firstName'",
+      "type": "required",
+    },
+    "options": Object {
+      "message": "should be equal to one of the allowed values",
+      "type": "enum",
+    },
+  },
+  "values": Object {},
+}
+`;
+
 exports[`ajvResolver should get errors 1`] = `
 Object {
   "errors": Object {
